@@ -1,4 +1,6 @@
 {
     //"window.zoomLevel": 6,
-    "python.languageServer": "Pylance"
+    "python.languageServer": "Pylance",
+    "emmet.triggerExpansionOnTab": true,
+"files.associations": {"*html":"html"}
 }
