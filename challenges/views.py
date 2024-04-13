@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+# since we already have the render function we can use that instead of the render_to_string
+# from django.template.loader import render_to_string
 # Create your views here.
 
 
@@ -68,8 +70,11 @@ def index(request):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
-        response_data = f"<h1>{challenge_text}</h1>"
-        return HttpResponse(response_data)
+        render_data = render(
+            request, "challenges/challenge.html", {
+                "text": challenge_text,
+                "month_name": month.capitalize()})
+        return HttpResponse(render_data)
     except:
         return HttpResponseNotFound("<h1>This month is not supported</h1>")
 
@@ -81,6 +86,5 @@ def monthly_challenge_by_number(request, month):
         return HttpResponseNotFound("Error not a valid nmonth")
 
     redirect_month = months[month-1]
-    redirect_path = reverse(
-        "month-challenge", args=[redirect_month])  # /challenge
+    redirect_path = reverse("month-challenge", args=[redirect_month])
     return HttpResponseRedirect(redirect_path)

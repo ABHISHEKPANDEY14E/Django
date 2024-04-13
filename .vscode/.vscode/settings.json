@@ -1,6 +1,5 @@
 {
     //"window.zoomLevel": 6,
     "python.languageServer": "Pylance",
-    "emmet.triggerExpansionOnTab": true,
-"files.associations": {"*html":"html"}
+    "html.suggest.html5": true,
 }

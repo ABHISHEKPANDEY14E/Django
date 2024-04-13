@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Challenges</title>
+  </head>
+  <body>
+    <ul>
+      {% comment %} i want to generate list item dynamically {% endcomment %}
+      {%comment %} here we can use all the list items {% endcomment %} {% for
+      month in months %}
+      <li><a href="{% url "month-Challenge" month%}">{{month|title}}</a></li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
