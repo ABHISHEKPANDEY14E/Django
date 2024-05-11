@@ -2,4 +2,7 @@
     //"window.zoomLevel": 6,
     "python.languageServer": "Pylance",
     "html.suggest.html5": true,
+    "emmet.includeLanguages": {
+        "django-html":"html"
+    }
 }

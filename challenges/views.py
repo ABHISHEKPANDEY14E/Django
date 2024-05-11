@@ -1,9 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.http import Http404, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 # since we already have the render function we can use that instead of the render_to_string
 # from django.template.loader import render_to_string
 # Create your views here.
+
+# for adding 404.html page
+from django.template.loader import render_to_string
 
 
 # def january(request):
@@ -73,13 +76,13 @@ def index(request):
 def monthly_challenge(request, month):
     try:
         challenge_text = monthly_challenges[month]
-        render_data = render(
+        return render(
             request, "challenges/challenge.html", {
                 "text": challenge_text,
-                "month_name": month.capitalize()})
-        return HttpResponse(render_data)
+                "month_name": month
+                })
     except:
-        return HttpResponseNotFound("<h1>This month is not supported</h1>")
+        raise Http404()
 
 
 def monthly_challenge_by_number(request, month):
